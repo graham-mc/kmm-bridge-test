@@ -6,4 +6,4 @@ pluginManagement {
     }
 }
 
-include("breeds", "analytics", "allshared", ":testapps:android")
+include("template", "breeds", "analytics", "allshared", ":testapps:android")

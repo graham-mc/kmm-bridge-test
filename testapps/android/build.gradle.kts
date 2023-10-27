@@ -68,6 +68,7 @@ dependencies {
     } else {
         implementation(project(":analytics"))
         implementation(project(":breeds"))
+        implementation(project(":template"))
     }
     implementation(libs.bundles.app.ui)
     implementation(libs.koin.android)

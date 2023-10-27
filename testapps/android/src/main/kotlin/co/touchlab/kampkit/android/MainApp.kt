@@ -11,10 +11,12 @@ import co.touchlab.kmmbridgekickstart.startSDK
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.context.startKoin
 import org.koin.dsl.module
+import io.graham.template.Greeting
 
 class MainApp : Application() {
     override fun onCreate() {
         super.onCreate()
+        Log.i("Greeting", Greeting().greet())
         val analytics = object : Analytics{
             override fun sendEvent(eventName: String, eventArgs: Map<String, Any>) {
                 println("eventName: ${eventName}, eventArgs: ${eventArgs.keys.joinToString(",") { key -> "[$key, ${eventArgs[key]}]" }}")
