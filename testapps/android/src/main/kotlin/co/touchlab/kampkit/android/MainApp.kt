@@ -6,17 +6,21 @@ import android.content.SharedPreferences
 import android.util.Log
 import co.touchlab.kampkit.android.models.BreedViewModel
 import co.touchlab.kmmbridgekickstart.Analytics
+import co.touchlab.kmmbridgekickstart.HelloKotlin
 import co.touchlab.kmmbridgekickstart.repository.BreedRepository
 import co.touchlab.kmmbridgekickstart.startSDK
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.context.startKoin
 import org.koin.dsl.module
 import io.graham.template.Greeting
+import io.graham.template.HelloTemplate
 
 class MainApp : Application() {
     override fun onCreate() {
         super.onCreate()
         Log.i("Greeting", Greeting().greet())
+        Log.i("Greeting", HelloKotlin().sayHello())
+        Log.i("Greeting", HelloTemplate().sayHello())
         val analytics = object : Analytics{
             override fun sendEvent(eventName: String, eventArgs: Map<String, Any>) {
                 println("eventName: ${eventName}, eventArgs: ${eventArgs.keys.joinToString(",") { key -> "[$key, ${eventArgs[key]}]" }}")

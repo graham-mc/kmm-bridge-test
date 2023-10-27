@@ -25,6 +25,7 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(project(":breeds"))
+                implementation(project(":template"))
                 api(project(":analytics"))
             }
         }
