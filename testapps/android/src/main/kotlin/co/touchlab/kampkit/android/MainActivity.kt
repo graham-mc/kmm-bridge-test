@@ -9,16 +9,16 @@ import co.touchlab.kampkit.android.ui.theme.KaMPKitTheme
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.component.KoinComponent
 
-class MainActivity : ComponentActivity(), KoinComponent {
+class MainActivity : ComponentActivity() {
 
-    private val viewModel: BreedViewModel by viewModel()
+//    private val viewModel: BreedViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent {
-            KaMPKitTheme {
-                MainScreen(viewModel)
-            }
-        }
+//        setContent {
+//            KaMPKitTheme {
+//                MainScreen(viewModel)
+//            }
+//        }
     }
 }

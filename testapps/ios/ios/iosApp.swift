@@ -11,23 +11,15 @@ import allshared
 @main
 struct iosApp: App {
     private let handle: SDKHandle
-    private let helloTemplate: TemplateHelloTemplate
     
     init() {
         self.handle = StartSDKKt.startSDK(analytics: IosAnalytics())
-        self.helloTemplate = TemplateHelloTemplate()
         handle.appAnalytics.appStarted()
-        print(StartSDKKt.sayHello())
-        print(helloTemplate.sayHello())
-        
+        print(handle.templateRepository.helloTemplate())
     }
     
     var body: some Scene {
         WindowGroup {
-            BreedListScreen(
-                viewModel: BreedViewModel(repository: handle.breedRepository, breedAnalytics: handle.breedAnalytics),
-                breedAnalytics: handle.breedAnalytics
-            )
         }
     }
 }

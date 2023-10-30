@@ -1,11 +1,9 @@
 package co.touchlab.kmmbridgekickstart
 
-import co.touchlab.kmmbridgekickstart.repository.BreedRepository
-import io.graham.template.HelloTemplate
+import io.graham.template.repository.TemplateRepository
 
 data class SDKHandle(
-    val breedRepository: BreedRepository,
     val appAnalytics: AppAnalytics,
-    val breedAnalytics: BreedAnalytics,
-    val helloTemplate: HelloTemplate
+    val templateAnalytics: TemplateAnalytics,
+    val templateRepository: TemplateRepository,
 )

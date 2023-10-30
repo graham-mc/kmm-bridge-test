@@ -13,6 +13,7 @@ fun initAnalytics(analytics: Analytics): AnalyticsHandle {
     return AnalyticsHandle(
         appAnalytics = AppAnalytics(),
         breedAnalytics = BreedAnalytics(),
+        templateAnalytics = TemplateAnalytics(),
         httpClientAnalytics = HttpClientAnalytics()
     )
 }
@@ -20,6 +21,7 @@ fun initAnalytics(analytics: Analytics): AnalyticsHandle {
 data class AnalyticsHandle(
     val appAnalytics: AppAnalytics,
     val breedAnalytics: BreedAnalytics,
+    val templateAnalytics: TemplateAnalytics,
     val httpClientAnalytics: HttpClientAnalytics
 )
 

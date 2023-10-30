@@ -1,15 +1,12 @@
 package co.touchlab.kmmbridgekickstart
 
-import io.graham.template.HelloTemplate
+import io.graham.template.templateStartup
 
 fun startSDK(analytics: Analytics): SDKHandle {
     val analyticsHandle = initAnalytics(analytics)
     return SDKHandle(
-        breedRepository = breedStartup(analyticsHandle),
         appAnalytics = analyticsHandle.appAnalytics,
-        breedAnalytics = analyticsHandle.breedAnalytics,
-        helloTemplate = HelloTemplate()
+        templateAnalytics = analyticsHandle.templateAnalytics,
+        templateRepository = templateStartup(analyticsHandle)
     )
 }
-
-fun sayHello() = "Hello from Kotlin!"
