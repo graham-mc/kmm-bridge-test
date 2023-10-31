@@ -17,7 +17,7 @@ class MainApp : Application() {
                 println("eventName: ${eventName}, eventArgs: ${eventArgs.keys.joinToString(",") { key -> "[$key, ${eventArgs[key]}]" }}")
             }
         }
-        val templateSDkHandle = startTemplateSDK(analytics, XAPISCredentials("app", "killswitch", "stable", "1234"), this)
+        val templateSDkHandle = startTemplateSDK(analytics, XAPISCredentials("app", "killswitch", "stable", "1234", "1.1"), this)
         templateSDkHandle.appAnalytics.appStarted()
         GlobalScope.launch(Dispatchers.IO) {
             val isDead = templateSDkHandle.templateRepository.isCurrentVersionDead()

@@ -1,6 +1,7 @@
 package io.graham.template.repository
 
 import co.touchlab.kmmbridgekickstart.TemplateAnalytics
+import io.graham.template.response.DeadVersionsResult
 import io.graham.template.xapis.XAPISCredentials
 import kotlinx.coroutines.delay
 
@@ -11,14 +12,25 @@ class TemplateRepository internal constructor (
 ) {
 
     suspend fun isCurrentVersionDead(): Boolean? {
-        delay(5000)
-        if (appIsOffline()) {
-            return null
+        val result = retrieveDeadVersions() ?: return null
+        if (result.contains(xapisCredentials.currentAppVersion)) {
+            templateAnalytics.notifiedUserOfDeadVersion(xapisCredentials.currentAppVersion)
+            return true
         }
-        return true
+        return false
     }
 
-    private fun appIsOffline(): Boolean {
-        return false
+    private suspend fun retrieveDeadVersions(): List<String>? {
+//        delay(2000)
+        val json = """
+        {
+            "deadVersions": [
+                "0.1",
+                "0.2"
+            ]
+        }
+        """
+        val result = kotlinx.serialization.json.Json.decodeFromString<DeadVersionsResult>(json)
+        return result.deadVersions
     }
 }

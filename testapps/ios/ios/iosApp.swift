@@ -33,7 +33,7 @@ class IosAnalytics: Analytics {
 
 struct KillSwitch {
     static func isCurrentVersionDead() async -> Bool? {
-        let handle = StartSDKKt.startSDK(analytics: IosAnalytics(), xapisCredentials: TemplateXAPISCredentials(app: "app", release: "killswitch", channel: "stable", appKey: "1234"))
+        let handle = StartSDKKt.startSDK(analytics: IosAnalytics(), xapisCredentials: TemplateXAPISCredentials(app: "app", release: "killswitch", channel: "stable", appKey: "1234", currentAppVersion: "1.1"))
         handle.appAnalytics.appStarted()
         handle.templateAnalytics.templateSaidHello(id: 42)
         let isDead = try? await handle.templateRepository.isCurrentVersionDead()

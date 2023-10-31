@@ -4,5 +4,6 @@ public data class XAPISCredentials(
     public val app: String,
     public val release: String,
     public val channel: String,
-    public val appKey: String
+    public val appKey: String,
+    public val currentAppVersion: String
 )
