@@ -10,12 +10,12 @@ import allshared
 
 @main
 struct iosApp: App {
-    private let handle: SDKHandle
     
     init() {
-        self.handle = StartSDKKt.startSDK(analytics: IosAnalytics())
-        handle.appAnalytics.appStarted()
-        print(handle.templateRepository.helloTemplate())
+        Task.detached {
+            let isDead = await KillSwitch.isCurrentVersionDead()
+            print(isDead!)
+        }
     }
     
     var body: some Scene {
@@ -28,5 +28,16 @@ class IosAnalytics: Analytics {
     func sendEvent(eventName: String, eventArgs: [String : Any]) {
         // In a real app, you would call to your analytics backend here
         print("\(eventName) - \(eventArgs)")
+    }
+}
+
+struct KillSwitch {
+    static func isCurrentVersionDead() async -> Bool? {
+        let handle = StartSDKKt.startSDK(analytics: IosAnalytics(), xapisCredentials: TemplateXAPISCredentials(app: "app", release: "killswitch", channel: "stable", appKey: "1234"))
+        handle.appAnalytics.appStarted()
+        handle.templateAnalytics.templateSaidHello(id: 42)
+        let isDead = try? await handle.templateRepository.isCurrentVersionDead()
+        return isDead as? Bool
+
     }
 }

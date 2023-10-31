@@ -5,12 +5,14 @@ import co.touchlab.kmmbridgekickstart.AppAnalytics
 import co.touchlab.kmmbridgekickstart.TemplateAnalytics
 import com.russhwolf.settings.Settings
 import io.graham.template.repository.TemplateRepository
+import io.graham.template.xapis.XAPISCredentials
 
 internal const val SETTINGS_KEY = "TemplateSettings"
 
-internal abstract class BaseServiceLocator(private val analyticsHandle: AnalyticsHandle): ServiceLocator {
+internal abstract class BaseServiceLocator(private val analyticsHandle: AnalyticsHandle, private val xapisCredentials: XAPISCredentials): ServiceLocator {
     override val templateRepository: TemplateRepository by lazy {
         TemplateRepository(
+            xapisCredentials = xapisCredentials,
             templateAnalytics = templateAnalytics
         )
     }
